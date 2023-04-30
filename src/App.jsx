@@ -2,6 +2,8 @@ import { useState } from "react";
 import { AppManagement } from "./Components/AppManagement/AppManagement";
 import { GlobalStyles } from "../globalStyles";
 import { ThemeProvider } from "styled-components";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { darkTheme, lightTheme } from "./assets/theme";
 import "./App.css";
 
@@ -20,6 +22,7 @@ function App() {
         <GlobalStyles />
         <AppManagement toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>
       </div>
+      <ToastContainer />
     </ThemeProvider>
   );
 }
