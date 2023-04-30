@@ -8,6 +8,7 @@ import { Table } from "../Table/Table";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { DarkMode } from "../DarkMode/DarkMode";
 import { Loading } from "../Loading/Loading";
+import { toast } from "react-toastify";
 import "../../App.css";
 
 const AppManagement = ({toggleDarkMode, isDarkMode}) => {
@@ -28,10 +29,11 @@ const AppManagement = ({toggleDarkMode, isDarkMode}) => {
       try {
         const data = await fetch("https://jsonplaceholder.typicode.com/todos");
         const parsed = await data.json();
-        console.log(parsed);
+        toast.success('All todos were loaded', {theme: `${isDarkMode ? 'dark' : 'light'}`})
         setTodos(parsed);
       } catch (error) {
         console.log(error);
+        toast.error('An error occurs while loading todos, please refresh or contact the admin if this issue persist', {theme: `${isDarkMode ? 'dark' : 'light'}`})
         setIsError(true);
       } finally {
         setIsLoading(false);
@@ -46,6 +48,7 @@ const AppManagement = ({toggleDarkMode, isDarkMode}) => {
     const addNewTodo = () => {
       const newTodoText = newTodoRef.current.value;
       if (newTodoText.trim() === "") {
+        toast.error('Please enter a description to create new todo', {theme: `${isDarkMode ? 'dark' : 'light'}`})
         return;
       }
 
@@ -58,6 +61,7 @@ const AppManagement = ({toggleDarkMode, isDarkMode}) => {
       setTodos([newTodo, ...todos]);
       newTodoRef.current.focus();
       newTodoRef.current.value = "";
+      toast.success('New todo was added', {theme: `${isDarkMode ? 'dark' : 'light'}`})
     };
 
     const onKeyEnterNewTodo = (e) => {
