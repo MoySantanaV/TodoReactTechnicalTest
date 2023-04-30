@@ -7,7 +7,7 @@ import { Pagination } from "../Pagination/Pagination";
 import { Table } from "../Table/Table";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { DarkMode } from "../DarkMode/DarkMode";
-import { Loading } from "./Loading/Loading";
+import { Loading } from "../Loading/Loading";
 import "../../App.css";
 
 const AppManagement = ({toggleDarkMode, isDarkMode}) => {
