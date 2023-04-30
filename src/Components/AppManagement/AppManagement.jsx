@@ -44,10 +44,15 @@ const AppManagement = ({toggleDarkMode, isDarkMode}) => {
     };
 
     const addNewTodo = () => {
+      const newTodoText = newTodoRef.current.value;
+      if (newTodoText.trim() === "") {
+        return;
+      }
+
       const newTodo = {
         userId: Math.round(Math.random() * 100),
         id: todos.length + 1,
-        title: newTodoRef.current.value,
+        title: (newTodoRef.current.value).trim(),
         completed: false,
       };
       setTodos([newTodo, ...todos]);
